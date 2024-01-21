@@ -20,23 +20,26 @@ let questions = [],
   score = 0,
   currentQuestion,
   timer;
+
+  const startQuiz = () => {
+    const num = numQuestions.value,
+      cat = category.value;
   
-const startQuiz = () => {
-  const num = numQuestions.value;
-  const cat = category.value;
-  const url = `http://localhost:3000/api/questions?amount=${num}&category=${cat}`;
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      questions = data.results;i
-      setTimeout(() => {
-        startScreen.classList.add("hide");
-        quiz.classList.remove("hide");
-        currentQuestion = 1;
-        showQuestion(questions[0]);
-      }, 1000);
-    });
-};
+    loadingAnimation();
+    const url = `https://opentdb.com/api.php?amount=${num}&category=${cat}&type=multiple`;
+  
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        questions = data.results;
+        setTimeout(() => {
+          startScreen.classList.add("hide");
+          quiz.classList.remove("hide");
+          currentQuestion = 1;
+          showQuestion(questions[0]);
+        }, 1000);
+      });
+  };
 
 startBtn.addEventListener("click", startQuiz);
 
@@ -190,9 +193,3 @@ const restartBtn = document.querySelector(".restart");
 restartBtn.addEventListener("click", () => {
   window.location.reload();
 });
-
-const playAdudio = (src) => {
-  const audio = new Audio(src);
-  audio.play();
-};
-
