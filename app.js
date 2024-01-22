@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 mongoose.connect(
-  "mongodb+srv://ohianisammy2005:<dasakantimuse>@cluster0.u6pdi1b.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb+srv://ohianisammy2005:dasakantimuse@cluster0.u6pdi1b.mongodb.net/?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
