@@ -1,7 +1,6 @@
 const progressBar = document.querySelector(".progress-bar"),
   progressText = document.querySelector(".progress-text");
 
-  
 const progress = (value) => {
   const percentage = (value / time) * 100;
   progressBar.style.width = `${percentage}%`;
@@ -22,25 +21,24 @@ let questions = [],
   currentQuestion,
   timer;
 
-  const startQuiz = () => {
-    const num = numQuestions.value,
-      cat = category.value;
-    
-    loadingAnimation();
-    const url = `https://opentdb.com/api.php?amount=${num}&category=${cat}&type=multiple`;
-  
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        questions = data.results;
-        setTimeout(() => {
-          startScreen.classList.add("hide");
-          quiz.classList.remove("hide");
-          currentQuestion = 1;
-          showQuestion(questions[0]);
-        }, 1000);
-      });
-  };
+const startQuiz = () => {
+  const num = numQuestions.value,
+    cat = category.value,
+    diff = difficulty.value;
+  loadingAnimation();
+  const url = `https://opentdb.com/api.php?amount=${num}&category=${cat}&difficulty=${diff}&type=multiple`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      questions = data.results;
+      setTimeout(() => {
+        startScreen.classList.add("hide");
+        quiz.classList.remove("hide");
+        currentQuestion = 1;
+        showQuestion(questions[0]);
+      }, 1000);
+    });
+};
 
 startBtn.addEventListener("click", startQuiz);
 
@@ -72,6 +70,7 @@ const showQuestion = (question) => {
     questions.indexOf(question) + 1
   }</span>
             <span class="total">/${questions.length}</span>`;
+  //add event listener to each answer
   const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.addEventListener("click", () => {
@@ -110,7 +109,6 @@ const loadingAnimation = () => {
     }
   }, 500);
 };
-
 
 const submitBtn = document.querySelector(".submit"),
   nextBtn = document.querySelector(".next");

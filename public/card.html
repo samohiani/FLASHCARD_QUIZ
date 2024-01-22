@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script defer src="card_script.js"></script>
+  <title>Flip Card</title>
+</head>
+<body>
+  <div class="container">
+    <div class="card" id="flipCard">
+      <div class="front" id="questionCard">
+        <h1 id="question">Welcome to Quizzler...                         Tap the card, to flip to the answer.</h1>
+      </div>
+      <div class="back">
+        <h1>Answer</h1>
+        <p id="answer">This is the back of the card. It displays the answers to questions</p>
+      </div>
+    </div>
+    <button  id="nextbutton" onclick="showNextQuestion()">Next</button>
+    <button id="restartbutton"onclick="startAgain()">Start Again</button> <!-- Added Start Again button -->
+  </div>
+</body>
+</html>
