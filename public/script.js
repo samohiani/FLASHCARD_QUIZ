@@ -1,6 +1,7 @@
 const progressBar = document.querySelector(".progress-bar"),
   progressText = document.querySelector(".progress-text");
 
+  
 const progress = (value) => {
   const percentage = (value / time) * 100;
   progressBar.style.width = `${percentage}%`;
@@ -24,7 +25,7 @@ let questions = [],
   const startQuiz = () => {
     const num = numQuestions.value,
       cat = category.value;
-  
+    
     loadingAnimation();
     const url = `https://opentdb.com/api.php?amount=${num}&category=${cat}&type=multiple`;
   
@@ -71,7 +72,6 @@ const showQuestion = (question) => {
     questions.indexOf(question) + 1
   }</span>
             <span class="total">/${questions.length}</span>`;
-  //add event listener to each answer
   const answersDiv = document.querySelectorAll(".answer");
   answersDiv.forEach((answer) => {
     answer.addEventListener("click", () => {
